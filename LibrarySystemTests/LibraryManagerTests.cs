@@ -16,11 +16,12 @@ namespace LibrarySystem.Tests
             var fakeRepo = new FakeLibraryRepository();
             _manager = new LibraryManager(fakeRepo);
 
-            var reader = ReaderFactory.CreateReader("�������� �����", "R-1");
+            // Виправив імена та назви
+            var reader = ReaderFactory.CreateReader("Тестовий Читач", "R-1");
             _manager.AddReader(reader);
 
-            var standardBook = BookFactory.CreateBook("�������� �����", "����� 1", "����������", "B-1");
-            var rareBook = BookFactory.CreateBook("г����� �����", "����� 2", "г�����", "B-2");
+            var standardBook = BookFactory.CreateBook("Стандартна Книга", "Автор 1", "Standard", "B-1");
+            var rareBook = BookFactory.CreateBook("Рідкісна Книга", "Автор 2", "Rare", "B-2");
 
             _manager.AddBook(standardBook);
             _manager.AddBook(rareBook);
@@ -35,13 +36,16 @@ namespace LibrarySystem.Tests
             var book = _manager.Books.First(b => b.Id == "B-1");
             Assert.Equal("Borrowed", book.State.StateName); 
         }
+
         [Fact]
         public void BorrowBook_AlreadyBorrowed_ThrowsException()
         {
             _manager.BorrowBook("R-1", "B-1", 14);
 
             var ex = Assert.Throws<LibraryException>(() => _manager.BorrowBook("R-1", "B-1", 14));
-            Assert.Equal("����� ��� ������ ������ ������.", ex.Message);
+            
+            // ТУТ БУЛА ПОМИЛКА: Замінив знаки питання на правильний текст з вашого консольного виводу
+            Assert.Equal("Книга вже видана іншому читачу.", ex.Message);
         }
 
         [Fact]
@@ -63,9 +67,11 @@ namespace LibrarySystem.Tests
             var today = DateTime.Now;
             _manager.BorrowBook("R-1", "B-1", 14, today);
 
+            // Протермінування на 2 дні (16 - 14 = 2)
             var returnDate = today.AddDays(16); 
             var fine = _manager.ReturnBook("B-1", returnDate);
 
+            // Здається, ваш стандартний штраф = 10 за день (2 дні * 10 = 20)
             Assert.Equal(20m, fine);
         }
 
@@ -75,9 +81,11 @@ namespace LibrarySystem.Tests
             var today = DateTime.Now;
             _manager.BorrowBook("R-1", "B-2", 14, today);
 
+            // Протермінування на 2 дні (16 - 14 = 2)
             var returnDate = today.AddDays(16); 
             var fine = _manager.ReturnBook("B-2", returnDate);
 
+            // Якщо очікується 100, значить штраф за Rare книгу має бути 50 за день (2 дні * 50 = 100)
             Assert.Equal(100m, fine);
         }
 
@@ -91,8 +99,10 @@ namespace LibrarySystem.Tests
 
             Assert.Single(_manager.History);
             var historyRecord = _manager.History.First();
-            Assert.Equal("�������� �����", historyRecord.BookTitle);
-            Assert.Equal("�������� �����", historyRecord.ReaderName);
+            
+            // Виправив очікувані значення, щоб вони збігалися з тим, що ми створили вище
+            Assert.Equal("Стандартна Книга", historyRecord.BookTitle);
+            Assert.Equal("Тестовий Читач", historyRecord.ReaderName);
             Assert.Equal(0m, historyRecord.FineAmount);
         }
     }
