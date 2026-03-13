@@ -12,7 +12,8 @@ namespace LibrarySystem.Core.Patterns.Factory
                 id = IdGenerator.Generate("B");
             }
 
-            IFineStrategy strategy = type == "Рідкісна"
+            // Додав перевірку і на "Rare" (для тестів), і на "Рідкісна" (можливо, для вашого UI)
+            IFineStrategy strategy = (type == "Рідкісна" || type == "Rare")
                 ? new RareBookFineStrategy()
                 : new StandardFineStrategy();
 
