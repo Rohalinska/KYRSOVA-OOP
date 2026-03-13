@@ -81,7 +81,7 @@ namespace LibrarySystem.UI.Views
         public void ShowMessage(string msg, bool isError)
         {
             SafeInvoke(() =>
-                MessageBox.Show(msg, isError ? "Помилка" : "Інформація", MessageBoxButtons.OK, isError ? MessageBoxIcon.Warning : MessageBoxIcon.Information)
+                MessageBox.Show(msg, isError ? "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" : "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", MessageBoxButtons.OK, isError ? MessageBoxIcon.Warning : MessageBoxIcon.Information)
             );
         }
 
