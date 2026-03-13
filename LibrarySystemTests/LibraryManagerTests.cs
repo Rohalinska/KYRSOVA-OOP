@@ -16,11 +16,11 @@ namespace LibrarySystem.Tests
             var fakeRepo = new FakeLibraryRepository();
             _manager = new LibraryManager(fakeRepo);
 
-            var reader = ReaderFactory.CreateReader("Тестовий Читач", "R-1");
+            var reader = ReaderFactory.CreateReader("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", "R-1");
             _manager.AddReader(reader);
 
-            var standardBook = BookFactory.CreateBook("Звичайна книга", "Автор 1", "Стандартна", "B-1");
-            var rareBook = BookFactory.CreateBook("Рідкісна книга", "Автор 2", "Рідкісна", "B-2");
+            var standardBook = BookFactory.CreateBook("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ 1", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "B-1");
+            var rareBook = BookFactory.CreateBook("РіпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ 2", "РіпїЅпїЅпїЅпїЅпїЅ", "B-2");
 
             _manager.AddBook(standardBook);
             _manager.AddBook(rareBook);
@@ -41,7 +41,7 @@ namespace LibrarySystem.Tests
             _manager.BorrowBook("R-1", "B-1", 14);
 
             var ex = Assert.Throws<LibraryException>(() => _manager.BorrowBook("R-1", "B-1", 14));
-            Assert.Equal("Книга вже видана іншому читачу.", ex.Message);
+            Assert.Equal("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.", ex.Message);
         }
 
         [Fact]
@@ -91,8 +91,8 @@ namespace LibrarySystem.Tests
 
             Assert.Single(_manager.History);
             var historyRecord = _manager.History.First();
-            Assert.Equal("Звичайна книга", historyRecord.BookTitle);
-            Assert.Equal("Тестовий Читач", historyRecord.ReaderName);
+            Assert.Equal("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", historyRecord.BookTitle);
+            Assert.Equal("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", historyRecord.ReaderName);
             Assert.Equal(0m, historyRecord.FineAmount);
         }
     }
