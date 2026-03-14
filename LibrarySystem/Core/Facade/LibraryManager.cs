@@ -56,7 +56,7 @@ namespace LibrarySystem.Core.Facade
             OnLibraryUpdated?.Invoke($"[BOOK_BORROWED] Книгу '{book.Title}' видано читачу '{reader.Name}'.");
         }
 
-        public decimal ReturnBook(string bookId, DateTime? returnDate = null)
+public decimal ReturnBook(string bookId, DateTime? returnDate = null)
         {
             var date = returnDate ?? DateTime.Now;
 
@@ -70,6 +70,10 @@ namespace LibrarySystem.Core.Facade
             _repository.SaveBook(book);
 
             var overdueDays = loan.GetOverdueDays(date);
+
+            // ТЕСТОВИЙ РЯДОК: Штучно робимо 5 днів прострочення
+            overdueDays = 5; 
+
             var fineAmount = book.FineStrategy.CalculateFine(overdueDays);
 
             _repository.ArchiveLoan(new HistoryRecord
