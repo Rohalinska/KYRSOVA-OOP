@@ -55,41 +55,42 @@ namespace LibrarySystem.Core.Facade
 
             OnLibraryUpdated?.Invoke($"[BOOK_BORROWED] Книгу '{book.Title}' видано читачу '{reader.Name}'.");
         }
+       public decimal ReturnBook(string bookId, DateTime? returnDate = null)
+{
+    var date = returnDate ?? DateTime.Now;
 
-public decimal ReturnBook(string bookId, DateTime? returnDate = null)
-        {
-            var date = returnDate ?? DateTime.Now;
+    var loan = ActiveLoans.FirstOrDefault(l => l.Book != null && l.Book.Id == bookId);
 
-            var loan = ActiveLoans.FirstOrDefault(l => l.Book.Id == bookId)
-                ?? throw new LibraryException("Ця книга не числиться як видана.");
+    if (loan == null)
+        return 0;
 
-            var book = loan.Book;
-            book.ReturnBook();
+    var book = loan.Book;
 
-            _repository.DeleteLoan(bookId);
-            _repository.SaveBook(book);
+    book.ReturnBook();
 
-            var overdueDays = loan.GetOverdueDays(date);
+    _repository.DeleteLoan(bookId);
+    _repository.SaveBook(book);
 
-            // ТЕСТОВИЙ РЯДОК: Штучно робимо 5 днів прострочення
-            overdueDays = 5; 
+    var overdueDays = loan.GetOverdueDays(date);
 
-            var fineAmount = book.FineStrategy.CalculateFine(overdueDays);
+    var fineAmount = book.FineStrategy?.CalculateFine(overdueDays) ?? 0;
 
-            _repository.ArchiveLoan(new HistoryRecord
-            {
-                BookTitle = book.Title,
-                ReaderName = loan.Reader.Name,
-                IssueDate = loan.IssueDate,
-                ReturnDate = date,
-                FineAmount = fineAmount
-            });
+    _repository.ArchiveLoan(new HistoryRecord
+    {
+        BookTitle = book.Title,
+        ReaderName = loan.Reader?.Name ?? "",
+        IssueDate = loan.IssueDate,
+        ReturnDate = date,
+        FineAmount = fineAmount
+    });
 
-            string msg = $"[BOOK_RETURNED] Книгу '{book.Title}' повернуто.";
-            if (fineAmount > 0) msg += $" Штраф: {fineAmount} грн.";
+    string msg = $"[BOOK_RETURNED] Книгу '{book.Title}' повернуто.";
+    if (fineAmount > 0)
+        msg += $" Штраф: {fineAmount} грн.";
 
-            OnLibraryUpdated?.Invoke(msg);
-            return fineAmount;
-        }
+    OnLibraryUpdated?.Invoke(msg);
+
+    return fineAmount;
+}
     }
 }
