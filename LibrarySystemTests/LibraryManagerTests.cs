@@ -6,6 +6,7 @@ namespace LibrarySystemTests
 {
     public class LibraryManagerTests
     {
+        //№1
         [Fact]
         public void AddBook_ShouldAddBook()
         {
@@ -18,7 +19,7 @@ namespace LibrarySystemTests
 
             Assert.Single(repo.GetAllBooks());
         }
-
+        //№2
         [Fact]
         public void AddReader_ShouldAddReader()
         {
@@ -31,7 +32,7 @@ namespace LibrarySystemTests
 
             Assert.Single(repo.GetAllReaders());
         }
-
+        //№3
         [Fact]
         public void BorrowBook_ShouldCreateLoan()
         {
@@ -48,7 +49,7 @@ namespace LibrarySystemTests
 
             Assert.Single(repo.GetAllLoans(null, null));
         }
-
+        //№4
         [Fact]
         public void ReturnBook_ShouldRemoveLoan()
         {
