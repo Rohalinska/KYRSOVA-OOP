@@ -133,9 +133,6 @@ C:\Users\user\Desktop\LibrarySystemTests\obj\Debug\net8.0-windows\ref\LibrarySys
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\CoverletSourceRootsMapping_LibrarySystemTests
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\testhost.exe
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\testhost.dll
-C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\xunit.runner.visualstudio.dotnetcore.testadapter.dll
-C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\xunit.runner.reporters.netcoreapp10.dll
-C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\xunit.runner.utility.netcoreapp10.dll
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\LibrarySystem.deps.json
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\LibrarySystem.runtimeconfig.json
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\LibrarySystem.exe
@@ -153,7 +150,6 @@ C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\Microsoft.
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\Microsoft.TestPlatform.Utilities.dll
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.Common.dll
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
-C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\NuGet.Frameworks.dll
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\SQLitePCLRaw.batteries_v2.dll
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\SQLitePCLRaw.core.dll
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\SQLitePCLRaw.provider.e_sqlite3.dll
@@ -263,3 +259,5 @@ C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\obj\Debug\net8.0-windows\refint\Lib
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\obj\Debug\net8.0-windows\LibrarySystemTests.pdb
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\obj\Debug\net8.0-windows\LibrarySystemTests.genruntimeconfig.cache
 C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\obj\Debug\net8.0-windows\ref\LibrarySystemTests.dll
+C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\.msCoverageSourceRootsMapping_LibrarySystemTests
+C:\Users\Dell\KYRSOVA-OOP\LibrarySystemTests\bin\Debug\net8.0-windows\xunit.runner.visualstudio.testadapter.dll

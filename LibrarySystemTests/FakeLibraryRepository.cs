@@ -1,49 +1,62 @@
-﻿using LibrarySystem.Core.Interfaces;
-using LibrarySystem.Core.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.PortableExecutable;
+using LibrarySystem.Core.Interfaces;
+using LibrarySystem.Core.Models;
 
-namespace LibrarySystem.Tests
+namespace LibrarySystemTests
 {
     public class FakeLibraryRepository : ILibraryRepository
     {
-        private readonly List<Book> _books = new();
-        private readonly List<Reader> _readers = new();
-        private readonly List<Loan> _loans = new();
-        private readonly List<HistoryRecord> _history = new();
+        private List<Book> books = new();
+        private List<Reader> readers = new();
+        private List<Loan> loans = new();
+        private List<HistoryRecord> history = new();
 
         public void SaveBook(Book book)
         {
-            _books.RemoveAll(b => b.Id == book.Id);
-            _books.Add(book);
+            books.Add(book);
         }
 
         public void SaveReader(Reader reader)
         {
-            _readers.RemoveAll(r => r.Id == reader.Id);
-            _readers.Add(reader);
+            readers.Add(reader);
         }
 
         public void SaveLoan(Loan loan)
         {
-            _loans.RemoveAll(l => l.Book.Id == loan.Book.Id);
-            _loans.Add(loan);
+            loans.Add(loan);
         }
 
-        public void DeleteLoan(string bookId)
+        public IEnumerable<Book> GetAllBooks()
         {
-            _loans.RemoveAll(l => l.Book.Id == bookId);
+            return books;
+        }
+
+        public IEnumerable<Reader> GetAllReaders()
+        {
+            return readers;
+        }
+
+        public IEnumerable<Loan> GetAllLoans(IEnumerable<Book> books, IEnumerable<Reader> readers)
+        {
+            return loans;
+        }
+
+        public void DeleteLoan(string id)
+        {
+            var loan = loans.FirstOrDefault(l => l.Book.Id == id);
+            if (loan != null)
+                loans.Remove(loan);
         }
 
         public void ArchiveLoan(HistoryRecord record)
         {
-            _history.Add(record);
+            history.Add(record);
         }
 
-        public IEnumerable<Book> GetAllBooks() => _books;
-        public IEnumerable<Reader> GetAllReaders() => _readers;
-        public IEnumerable<Loan> GetAllLoans(IEnumerable<Book> books, IEnumerable<Reader> readers) => _loans;
-        public IEnumerable<HistoryRecord> GetHistory() => _history;
+        public IEnumerable<HistoryRecord> GetHistory()
+        {
+            return history;
+        }
     }
 }
