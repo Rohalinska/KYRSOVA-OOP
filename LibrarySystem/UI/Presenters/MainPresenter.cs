@@ -7,7 +7,7 @@ using LibrarySystem.UI.Views;
 
 namespace LibrarySystem.UI.Presenters
 {
-    public class MainPresenter
+    public class MainPresenter 
     {
         private readonly IMainView _view;
         private readonly LibraryManager _libraryManager;
